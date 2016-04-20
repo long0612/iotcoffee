@@ -25,7 +25,7 @@ EVENT = 'event';
 q.t1 = datenum(2016,04,19,00,00,00); q.t2 = datenum(2016,04,22,00,00,00);
 events = IllQuery(servAddr,DB, USER, PWD, EVENT, q);
 
-P = -ones(numel(events),1);
+aP = -ones(numel(events),1);
 tP = -ones(numel(events),1);
 
 T = -ones(numel(events),1);
@@ -35,7 +35,7 @@ for k = 1:numel(events)
     if isfield(events{k}, 'device')
         if strcmp(events{k}.device,'PowerBlade')
             if isfield(events{k}, 'apparent_power')
-                P(k) = str2double(events{k}.apparent_power);
+                aP(k) = str2double(events{k}.apparent_power);
                 tP(k) = datenum8601(events{k}.recordDate);
             end
         else strcmp(events{k}.device,'BLEES')
@@ -47,7 +47,7 @@ for k = 1:numel(events)
         end
     end
 end
-P(P==-1) = [];
+aP(aP==-1) = [];
 tP(tP==-1) = [];
 T(T==-1) = [];
 H(H==-1) = [];
@@ -55,6 +55,6 @@ tB(tB==-1) = [];
 
 % plot
 figure; 
-subplot(311);plot((tP-min(tP))*3600*24,P,'rx-'); ylabel('Apparent Power'); xlabel('Relative time (s)');
+subplot(311);plot((tP-min(tP))*3600*24,aP,'rx-'); ylabel('Apparent Power'); xlabel('Relative time (s)');
 subplot(312);plot((tB-min(tB))*3600*24,T,'rx-'); ylabel('Temperature'); xlabel('Relative time (s)');
 subplot(313);plot((tB-min(tB))*3600*24,H,'rx-'); ylabel('Humidity'); xlabel('Relative time (s)');
