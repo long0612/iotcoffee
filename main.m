@@ -38,7 +38,7 @@ for k = 1:numel(events)
                 aP(k) = str2double(events{k}.apparent_power);
                 tP(k) = datenum8601(events{k}.recordDate);
             end
-        else strcmp(events{k}.device,'BLEES')
+        elseif strcmp(events{k}.device,'BLEES')
             if isfield(events{k}, 'temperature_celcius') && isfield(events{k}, 'humidity_percent')
                 T(k) = events{k}.temperature_celcius;
                 H(k) = events{k}.humidity_percent;
