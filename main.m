@@ -22,10 +22,10 @@ EVENT = 'event';
 %% Main
 
 % Query limited files from the database
-q.t1 = datenum(2016,04,20,15,00,00); q.t2 = datenum(2016,04,22,00,00,00);
+q.t1 = datenum(2016,04,22,00,00,00); q.t2 = datenum(2016,04,28,00,00,00);
 
 q.dev = 'PowerBlade';
-events = IllQuery(servAddr,DB, USER, PWD, EVENT, q);
+events = longQuery(servAddr,DB, USER, PWD, EVENT, q);
 aP = -ones(numel(events),1);
 P = -ones(numel(events),1);
 tP = -ones(numel(events),1);
@@ -41,7 +41,7 @@ P(P==-1) = [];
 tP(tP==-1) = [];
 
 q.dev = 'BLEES';
-events = IllQuery(servAddr,DB, USER, PWD, EVENT, q);
+events = longQuery(servAddr,DB, USER, PWD, EVENT, q);
 T = -ones(numel(events),1);
 H = -ones(numel(events),1);
 tB = -ones(numel(events),1);
@@ -56,8 +56,9 @@ T(T==-1) = [];
 H(H==-1) = [];
 tB(tB==-1) = [];
 
+%{
 q.dev = 'Android';
-events = IllQuery(servAddr,DB, USER, PWD, EVENT, q);
+events = longQuery(servAddr,DB, USER, PWD, EVENT, q);
 spl = -ones(numel(events),1);
 tA = -ones(numel(events),1);
 for k = 1:numel(events)
@@ -68,12 +69,14 @@ for k = 1:numel(events)
 end
 spl(spl==-1) = [];
 tA(tA==-1) = [];
+%}
 
 % plot
 tStart = min([tP;tB;tA]);
 figure; 
-subplot(511);plot((tP-tStart)*60*24,aP,'rx-'); ylabel('Apparent Power'); xlabel('Relative time (min)');
-subplot(512);plot((tP-tStart)*60*24,P,'rx-'); ylabel('Power'); xlabel('Relative time (min)');
-subplot(513);plot((tB-tStart)*60*24,T,'rx-'); ylabel('Temperature'); xlabel('Relative time (min)');
-subplot(514);plot((tB-tStart)*60*24,H,'rx-'); ylabel('Humidity'); xlabel('Relative time (min)');
-subplot(515);plot((tA-tStart)*60*24,spl,'rx-'); ylabel('Sound Pressure Level'); xlabel('Relative time (min)');
+subplot(411);plot((tP-tStart)*60*24,aP,'rx-'); ylabel('Apparent Power'); xlabel('Relative time (min)');
+subplot(412);plot((tP-tStart)*60*24,P,'rx-'); ylabel('Power'); xlabel('Relative time (min)');
+subplot(413);plot((tB-tStart)*60*24,T,'rx-'); ylabel('Temperature'); xlabel('Relative time (min)');
+subplot(414);plot((tB-tStart)*60*24,H,'rx-'); ylabel('Humidity'); xlabel('Relative time (min)');
+suptitle(['tStart = ' datestr8601(tStart)]);
+%subplot(515);plot((tA-tStart)*60*24,spl,'rx-'); ylabel('Sound Pressure Level'); xlabel('Relative time (min)');
