@@ -22,7 +22,7 @@ EVENT = 'event';
 %% Main
 
 % Query limited files from the database
-q.t1 = datenum(2016,04,22,00,00,00); q.t2 = datenum(2016,04,28,00,00,00);
+q.t1 = datenum(2016,04,18,00,00,00); q.t2 = datenum(2016,04,24,00,00,00);
 
 q.dev = 'PowerBlade';
 events = longQuery(servAddr,DB, USER, PWD, EVENT, q);
