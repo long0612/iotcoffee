@@ -74,9 +74,9 @@ tA(tA==-1) = [];
 % plot
 tStart = min([tP;tB;tA]);
 figure; 
-subplot(411);plot((tP-tStart)*60*24,aP,'rx-'); ylabel('Apparent Power'); xlabel('Relative time (min)');
-subplot(412);plot((tP-tStart)*60*24,P,'rx-'); ylabel('Power'); xlabel('Relative time (min)');
-subplot(413);plot((tB-tStart)*60*24,T,'rx-'); ylabel('Temperature'); xlabel('Relative time (min)');
-subplot(414);plot((tB-tStart)*60*24,H,'rx-'); ylabel('Humidity'); xlabel('Relative time (min)');
-suptitle(['tStart = ' datestr8601(tStart)]);
+subplot(411);plot((tP-tStart)*24,aP,'rx-'); ylabel('Apparent Power');
+subplot(412);plot((tP-tStart)*24,P,'rx-'); ylabel('Power'); 
+subplot(413);plot((tB-tStart)*24,T,'rx-'); ylabel('Temperature');
+subplot(414);plot((tB-tStart)*24,H,'rx-'); ylabel('Humidity'); xlabel('Relative time (hours)');
+suptitle(['tStart (local) = ' datestr8601(tStart-5/24)]);
 %subplot(515);plot((tA-tStart)*60*24,spl,'rx-'); ylabel('Sound Pressure Level'); xlabel('Relative time (min)');
