@@ -25,7 +25,7 @@ EVENT = 'event';
 q.t1 = datenum(2016,04,18,00,00,00); q.t2 = datenum(2016,04,24,00,00,00);
 
 q.dev = 'PowerBlade';
-events = longQuery(servAddr,DB, USER, PWD, EVENT, q);
+events = IllQuery2(servAddr,DB, USER, PWD, EVENT, q);
 aP = -ones(numel(events),1);
 P = -ones(numel(events),1);
 tP = -ones(numel(events),1);
@@ -41,7 +41,7 @@ P(P==-1) = [];
 tP(tP==-1) = [];
 
 q.dev = 'BLEES';
-events = longQuery(servAddr,DB, USER, PWD, EVENT, q);
+events = IllQuery2(servAddr,DB, USER, PWD, EVENT, q);
 T = -ones(numel(events),1);
 H = -ones(numel(events),1);
 tB = -ones(numel(events),1);
@@ -58,7 +58,7 @@ tB(tB==-1) = [];
 
 %{
 q.dev = 'Android';
-events = longQuery(servAddr,DB, USER, PWD, EVENT, q);
+events = IllQuery2(servAddr,DB, USER, PWD, EVENT, q);
 spl = -ones(numel(events),1);
 tA = -ones(numel(events),1);
 for k = 1:numel(events)
