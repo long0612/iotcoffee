@@ -72,7 +72,8 @@ tA(tA==-1) = [];
 %}
 
 % plot
-tStart = min([tP;tB;tA]);
+%tStart = min([tP;tB;tA]);
+tStart = min([tP;tB]);
 figure; 
 subplot(411);plot((tP-tStart)*24,aP,'rx-'); ylabel('Apparent Power');
 subplot(412);plot((tP-tStart)*24,P,'rx-'); ylabel('Power'); 
