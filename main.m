@@ -6,7 +6,8 @@
 
 clear all; close all
 
-rootDir = 'C:/Users/Long/Projects/';
+%rootDir = 'C:/Users/Long/Projects/';
+rootDir = 'C:/cygwin64/home/BLISSBOX/';
 
 addpath([rootDir 'sas-clientLib/src/']);
 addpath([rootDir 'jsonlab']);
@@ -22,7 +23,8 @@ EVENT = 'event';
 %% Main
 
 % Query limited files from the database
-q.t1 = datenum(2016,04,18,00,00,00); q.t2 = datenum(2016,04,24,00,00,00);
+%q.t1 = datenum(2016,04,18,00,00,00); q.t2 = datenum(2016,04,24,00,00,00);
+q.t1 = datenum(2016,07,08,00,00,00); q.t2 = datenum(2016,07,12,00,00,00);
 
 q.dev = 'PowerBlade';
 events = IllQuery2(servAddr,DB, USER, PWD, EVENT, q);
